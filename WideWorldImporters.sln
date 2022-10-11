@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.Purchasi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.Gateway", "WideWorldImporters.Gateway\WideWorldImporters.Gateway.csproj", "{B888B56C-5DED-405E-BF11-7FB67FFFA67C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.AuthSvr", "WideWorldImporters.AuthSvr\WideWorldImporters.AuthSvr.csproj", "{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B888B56C-5DED-405E-BF11-7FB67FFFA67C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B888B56C-5DED-405E-BF11-7FB67FFFA67C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B888B56C-5DED-405E-BF11-7FB67FFFA67C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
