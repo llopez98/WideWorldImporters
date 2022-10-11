@@ -1,0 +1,124 @@
+{
+  "Routes": [
+    { //Warehouse
+      "DownstreamPathTemplate": "/api/Warehouse/items",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7051"
+        }
+      ],
+      "UpstreamPathTemplate": "/items",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Warehouse/item/transactions/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7051"
+        }
+      ],
+      "UpstreamPathTemplate": "/items/transac/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    { //Sales
+      "DownstreamPathTemplate": "/api/Sales/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Sales",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/customers",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Sales/transactions/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/transactions/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Sales/order/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/order/{id}",//revisar
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Sales/orders/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/orders/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    { //Purchasing
+      "DownstreamPathTemplate": "/api/Purchasing/suppliers",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7084"
+        }
+      ],
+      "UpstreamPathTemplate": "/suppliers",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Purchasing/supplier/transactions/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7084"
+        }
+      ],
+      "UpstreamPathTemplate": "/suppliers/transac/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Purchasing/orders/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7084"
+        }
+      ],
+      "UpstreamPathTemplate": "/purchase/orders/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}
