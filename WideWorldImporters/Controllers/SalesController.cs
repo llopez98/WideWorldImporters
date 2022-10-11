@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WideWorldImporters.Repository;
 
 namespace WideWorldImporters.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SalesController : ControllerBase

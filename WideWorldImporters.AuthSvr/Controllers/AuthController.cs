@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using WideWorldImporters.AuthSvr.Application.Dto;
+using WideWorldImporters.AuthSvr.Token;
 
 namespace WideWorldImporters.AuthSvr.Controllers
 {
@@ -10,10 +12,12 @@ namespace WideWorldImporters.AuthSvr.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ITokenService _tokenService;
 
-        public AuthController(UserManager<IdentityUser> userManager)
+        public AuthController(UserManager<IdentityUser> userManager, ITokenService tokenService)
         {
             _userManager = userManager;
+            _tokenService = tokenService;
         }
 
         [HttpPost("Registration")]
@@ -47,7 +51,12 @@ namespace WideWorldImporters.AuthSvr.Controllers
                 return Unauthorized();
             }
 
-            return Ok();
+            var signingCredentials = _tokenService.GetSigningCredentials();
+            var claims = await _tokenService.GetClaims(user);
+            var tokenOptions = _tokenService.GenerateTokenOption(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+            return Ok(token);
         }
     }
 }
