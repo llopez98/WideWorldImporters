@@ -16,6 +16,7 @@ namespace WideWorldImporters.Warehouse.Repository
             _context = context;
             _mapper = mapper;
         }
+
         public async Task<List<StockItemsDto>> GetAllStockItems()
         {
             var stockItems = await _context.StockItems.ToListAsync();
@@ -27,25 +28,58 @@ namespace WideWorldImporters.Warehouse.Repository
 
         public async Task<List<StockItemTransactionDto>> GetStockItemTransactions(int id)
         {
-            var stockItemsTrans = await _context.StockItemTransactions.Where(x => x.StockItemId == id).Take(5).ToListAsync();
+            var stockItemsTrans = await _context.StockItemTransactions
+                .Where(x => x.StockItemId == id)
+                .Take(5)
+                .ToListAsync();
 
-            var stockItemsTransDto = _mapper.Map<List<StockItemTransaction>, List<StockItemTransactionDto>>(stockItemsTrans);
+            var stockItemsTransDto = _mapper.Map<
+                List<StockItemTransaction>,
+                List<StockItemTransactionDto>
+            >(stockItemsTrans);
 
-            foreach (var item in stockItemsTransDto) {
-                var customer = await _context.Customers1.Where(x => x.CustomerId == item.CustomerId).FirstOrDefaultAsync();
+            foreach (var item in stockItemsTransDto)
+            {
+                var customer = await _context.Customers1
+                    .Where(x => x.CustomerId == item.CustomerId)
+                    .FirstOrDefaultAsync();
                 item.Customer = _mapper.Map<Customer1, CustomerDto>(customer);
 
-                var purchaseOrder = await _context.PurchaseOrders.Where(x => x.PurchaseOrderId == item.PurchaseOrderId).FirstOrDefaultAsync();
+                var purchaseOrder = await _context.PurchaseOrders
+                    .Where(x => x.PurchaseOrderId == item.PurchaseOrderId)
+                    .FirstOrDefaultAsync();
                 item.PurchaseOrder = _mapper.Map<PurchaseOrder, PurchasingOrdersDto>(purchaseOrder);
 
-                var stockItem = await _context.StockItems.Where(x => x.StockItemId == item.StockItemId).FirstOrDefaultAsync();
+                var stockItem = await _context.StockItems
+                    .Where(x => x.StockItemId == item.StockItemId)
+                    .FirstOrDefaultAsync();
                 item.StockItem = _mapper.Map<StockItem, StockItemsDto>(stockItem);
 
-                var supplier = await _context.Suppliers1.Where(x => x.SupplierId == item.SupplierId).FirstOrDefaultAsync();
+                var supplier = await _context.Suppliers1
+                    .Where(x => x.SupplierId == item.SupplierId)
+                    .FirstOrDefaultAsync();
                 item.Supplier = _mapper.Map<Supplier1, SupplierDto>(supplier);
             }
 
             return stockItemsTransDto;
+        }
+
+        public async Task NewStockItem(StockItem item)
+        {
+            try
+            {
+                /*
+                 INSERT INTO Warehouse.StockItems (StockItemName, SupplierID, UnitPackageID, OuterPackageID, LeadTimeDays, QuantityPerOuter, IsChillerStock, TaxRate, UnitPrice, TypicalWeightPerUnit, LastEditedBy)
+                 VALUES ('TestItem1', 12, 7, 7, 15, 1, 0, 15, 100, 15, 1);
+                 */
+                _context.StockItems.Add(item);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

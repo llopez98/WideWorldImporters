@@ -32,14 +32,20 @@ namespace WideWorldImporters.Purchasing.Repository
 
             var ordersDto = _mapper.Map<List<PurchaseOrder>, List<PurchasingOrdersDto>>(orders);
 
-            foreach (var order in ordersDto) {
-                var orderLines = await _context.PurchaseOrderLines.Where(x => x.PurchaseOrderId == order.PurchaseOrderId).ToListAsync();
-                var orderLinesDto = _mapper.Map<List<PurchaseOrderLine>, List<PurchaseOrderLineDto>>(orderLines);
+            foreach (var order in ordersDto)
+            {
+                var orderLines = await _context.PurchaseOrderLines
+                    .Where(x => x.PurchaseOrderId == order.PurchaseOrderId)
+                    .ToListAsync();
+                var orderLinesDto = _mapper.Map<
+                    List<PurchaseOrderLine>,
+                    List<PurchaseOrderLineDto>
+                >(orderLines);
 
                 order.PurchaseOrderLines = orderLinesDto;
 
                 //nombres
-                
+
                 var delivery = _context.DeliveryMethods.Find(order.DeliveryMethodId);
                 order.DeliveryMethodName = delivery.DeliveryMethodName;
 
@@ -48,17 +54,23 @@ namespace WideWorldImporters.Purchasing.Repository
             }
 
             return ordersDto;
-
         }
 
         public async Task<List<SupplierTransactionsDto>> GetSupplierTransactions(int id)
         {
-            var transactions = await _context.SupplierTransactions.Where(x => x.SupplierId == id).ToListAsync();
+            var transactions = await _context.SupplierTransactions
+                .Where(x => x.SupplierId == id)
+                .ToListAsync();
 
-            var transactionsDto = _mapper.Map<List<SupplierTransaction>, List<SupplierTransactionsDto>>(transactions);
+            var transactionsDto = _mapper.Map<
+                List<SupplierTransaction>,
+                List<SupplierTransactionsDto>
+            >(transactions);
 
-            foreach (var transaction in transactions) {
-                foreach (var tranDto in transactionsDto) {
+            foreach (var transaction in transactions)
+            {
+                foreach (var tranDto in transactionsDto)
+                {
                     var payment = _context.PaymentMethods.Find(transaction.PaymentMethodId);
                     var trantype = _context.TransactionTypes.Find(transaction.TransactionTypeId);
                     tranDto.PaymentMethod = payment.PaymentMethodName;

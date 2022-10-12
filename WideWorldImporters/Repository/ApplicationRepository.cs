@@ -36,14 +36,20 @@ namespace WideWorldImporters.Repository
 
         public async Task<List<CustomerTransactionDto>> GetCustomerTransactions(int id)
         {
-            var customerTransactions = await _context.CustomerTransactions.Where(x => x.CustomerId == id).ToListAsync();
+            var customerTransactions = await _context.CustomerTransactions
+                .Where(x => x.CustomerId == id)
+                .ToListAsync();
 
-            var customerTransactionsDto = _mapper.Map<List<CustomerTransaction>, List<CustomerTransactionDto>>(customerTransactions);
+            var customerTransactionsDto = _mapper.Map<
+                List<CustomerTransaction>,
+                List<CustomerTransactionDto>
+            >(customerTransactions);
 
             return customerTransactionsDto;
         }
 
-        public async Task<List<CustomerOrdersDto>> GetCustomerOrders(int id) {
+        public async Task<List<CustomerOrdersDto>> GetCustomerOrders(int id)
+        {
             var orders = await _context.Orders.Where(x => x.CustomerId == id).ToListAsync();
 
             var customerOrders = _mapper.Map<List<Order>, List<CustomerOrdersDto>>(orders);
@@ -61,19 +67,26 @@ namespace WideWorldImporters.Repository
 
             var linesDto = _mapper.Map<List<OrderLine>, List<OrderLinesDto>>(lines);
 
-            var contactPerson = await _context.People.Where(x => x.PersonId == order.ContactPersonId).FirstOrDefaultAsync();
-            if(contactPerson != null)
+            var contactPerson = await _context.People
+                .Where(x => x.PersonId == order.ContactPersonId)
+                .FirstOrDefaultAsync();
+            if (contactPerson != null)
                 orderDetailsDto.ContactPerson = contactPerson.FullName;
 
-            var pickedbyPerson = await _context.People.Where(x => x.PersonId == order.PickedByPersonId).FirstOrDefaultAsync();
-            if(pickedbyPerson != null)
+            var pickedbyPerson = await _context.People
+                .Where(x => x.PersonId == order.PickedByPersonId)
+                .FirstOrDefaultAsync();
+            if (pickedbyPerson != null)
                 orderDetailsDto.PickedByPerson = pickedbyPerson.FullName;
 
-            var salesPerson = await _context.People.Where(x => x.PersonId == order.SalespersonPersonId).FirstOrDefaultAsync();
-            if(salesPerson != null)
+            var salesPerson = await _context.People
+                .Where(x => x.PersonId == order.SalespersonPersonId)
+                .FirstOrDefaultAsync();
+            if (salesPerson != null)
                 orderDetailsDto.SalespersonPerson = salesPerson.FullName;
 
-            foreach (var line in linesDto) {
+            foreach (var line in linesDto)
+            {
                 orderDetailsDto.OrderLines.Add(line);
             }
 

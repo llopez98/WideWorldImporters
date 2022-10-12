@@ -1,4 +1,5 @@
 ﻿using Entities.Dto;
+using Entities.Models;
 
 namespace WideWorldImporters.Warehouse.Repository
 {
@@ -7,5 +8,7 @@ namespace WideWorldImporters.Warehouse.Repository
         Task<List<StockItemsDto>> GetAllStockItems();
 
         Task<List<StockItemTransactionDto>> GetStockItemTransactions(int id);
+
+        Task NewStockItem(StockItem item);
     }
 }

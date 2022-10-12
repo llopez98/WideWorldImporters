@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WideWorldImporters.Warehouse.Repository;
@@ -18,15 +19,19 @@ namespace WideWorldImporters.Warehouse.Controllers
         }
 
         [HttpGet("items")]
-        public async Task<IActionResult> GetAllStockItems() {
-            try { 
+        public async Task<IActionResult> GetAllStockItems()
+        {
+            try
+            {
                 var stockItems = await _appRepo.GetAllStockItems();
 
                 if (stockItems == null)
                     return NotFound();
 
                 return Ok(stockItems);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }
@@ -34,16 +39,30 @@ namespace WideWorldImporters.Warehouse.Controllers
         [HttpGet("item/transactions/{id}")]
         public async Task<IActionResult> GetItemTransaction(int id)
         {
-            try {
+            try
+            {
                 var transaction = await _appRepo.GetStockItemTransactions(id);
 
                 if (transaction == null)
                     return NotFound();
 
                 return Ok(transaction);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> NewStockItem([FromBody] StockItem item)
+        {
+            if (item == null)
+                return BadRequest();
+
+            await _appRepo.NewStockItem(item);
+
+            return Created("", item);
         }
     }
 }

@@ -7,13 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WideWorldImporters.Sales", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{78778C90-BB54-48B2-AB37-BB33E58F2859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.Warehouse", "WideWorldImporters.Warehouse\WideWorldImporters.Warehouse.csproj", "{A7CDD6CA-2039-4136-8CD1-B368640F7B3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WideWorldImporters.Warehouse", "WideWorldImporters.Warehouse\WideWorldImporters.Warehouse.csproj", "{A7CDD6CA-2039-4136-8CD1-B368640F7B3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.Purchasing", "WideWorldImporters.Purchasing\WideWorldImporters.Purchasing.csproj", "{19C47600-A59E-4C98-AAF8-C83A83EC1B74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WideWorldImporters.Purchasing", "WideWorldImporters.Purchasing\WideWorldImporters.Purchasing.csproj", "{19C47600-A59E-4C98-AAF8-C83A83EC1B74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.Gateway", "WideWorldImporters.Gateway\WideWorldImporters.Gateway.csproj", "{B888B56C-5DED-405E-BF11-7FB67FFFA67C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WideWorldImporters.Gateway", "WideWorldImporters.Gateway\WideWorldImporters.Gateway.csproj", "{B888B56C-5DED-405E-BF11-7FB67FFFA67C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.AuthSvr", "WideWorldImporters.AuthSvr\WideWorldImporters.AuthSvr.csproj", "{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WideWorldImporters.AuthSvr", "WideWorldImporters.AuthSvr\WideWorldImporters.AuthSvr.csproj", "{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WideWorldImporters.App", "WideWorldImporters.App", "{50D4F4DD-DC81-418B-9774-0BD25C0385BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideWorldImporters.NgApp", "WideWorldImporters.NgApp\WideWorldImporters.NgApp.csproj", "{23297BF3-BC69-4359-A561-B9E08580251D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +49,16 @@ Global
 		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{340271C5-2E05-4AA6-B8A6-EAC53BE5472F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23297BF3-BC69-4359-A561-B9E08580251D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23297BF3-BC69-4359-A561-B9E08580251D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23297BF3-BC69-4359-A561-B9E08580251D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23297BF3-BC69-4359-A561-B9E08580251D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23297BF3-BC69-4359-A561-B9E08580251D} = {50D4F4DD-DC81-418B-9774-0BD25C0385BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {21911CFC-716E-455C-A5DD-FAA649491767}

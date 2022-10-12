@@ -38,28 +38,35 @@ namespace WideWorldImporters.Purchasing.Controllers
         [HttpGet("supplier/transactions/{id}")]
         public async Task<IActionResult> GetSupplierTransaction(int id)
         {
-            try {
+            try
+            {
                 var transaction = await _appRepo.GetSupplierTransactions(id);
 
                 if (transaction == null)
                     return NotFound();
 
                 return Ok(transaction);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }
 
         [HttpGet("orders/{id}")]
-        public async Task<IActionResult> GetPuschaseOrders(int id) {
-            try {
+        public async Task<IActionResult> GetPuschaseOrders(int id)
+        {
+            try
+            {
                 var orders = await _appRepo.GetPurchasingOrders(id);
 
                 if (orders == null)
                     return NotFound();
 
                 return Ok(orders);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }

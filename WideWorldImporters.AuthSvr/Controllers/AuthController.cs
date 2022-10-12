@@ -21,19 +21,17 @@ namespace WideWorldImporters.AuthSvr.Controllers
         }
 
         [HttpPost("Registration")]
-        public async Task<IActionResult> RegisterUser([FromBody] UserRegister userDto) {
-            if(userDto == null || !ModelState.IsValid)
+        public async Task<IActionResult> RegisterUser([FromBody] UserRegister userDto)
+        {
+            if (userDto == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new IdentityUser
-            {
-                UserName = userDto.Email,
-                Email = userDto.Email
-            };
+            var user = new IdentityUser { UserName = userDto.Email, Email = userDto.Email };
 
             var result = await _userManager.CreateAsync(user, userDto.Password);
 
-            if (!result.Succeeded) {
+            if (!result.Succeeded)
+            {
                 var errors = result.Errors.Select(e => e.Description);
 
                 return BadRequest(errors);
@@ -45,9 +43,11 @@ namespace WideWorldImporters.AuthSvr.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> LoginUser([FromBody] UserAuthentication userDto) {
+        public async Task<IActionResult> LoginUser([FromBody] UserAuthentication userDto)
+        {
             var user = await _userManager.FindByNameAsync(userDto.Email);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, userDto.Password)) {
+            if (user == null || !await _userManager.CheckPasswordAsync(user, userDto.Password))
+            {
                 return Unauthorized();
             }
 

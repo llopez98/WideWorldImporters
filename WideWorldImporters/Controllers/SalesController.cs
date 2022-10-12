@@ -18,7 +18,8 @@ namespace WideWorldImporters.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCustomer(int id) {
+        public async Task<IActionResult> GetCustomer(int id)
+        {
             try
             {
                 var customer = await _appRepo.GetCustomer(id);
@@ -28,21 +29,26 @@ namespace WideWorldImporters.Controllers
 
                 return Ok(customer);
             }
-            catch (Exception e) { 
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCustomers() {
-            try { 
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            try
+            {
                 var customers = await _appRepo.GetAllCustomers();
 
                 if (customers == null)
                     return NotFound();
 
                 return Ok(customers);
-            } catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }
@@ -50,14 +56,17 @@ namespace WideWorldImporters.Controllers
         [HttpGet("transactions/{id}")]
         public async Task<IActionResult> GetCustomerTransaction(int id)
         {
-            try {
+            try
+            {
                 var customerTransactions = await _appRepo.GetCustomerTransactions(id);
 
                 if (customerTransactions == null)
                     return NotFound();
 
                 return Ok(customerTransactions);
-            }catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }
@@ -65,29 +74,35 @@ namespace WideWorldImporters.Controllers
         [HttpGet("order/{id}")]
         public async Task<IActionResult> GetOrderDetails(int id)
         {
-            try {
+            try
+            {
                 var orderDetails = await _appRepo.GetOrderDetails(id);
 
                 if (orderDetails == null)
                     return NotFound();
 
                 return Ok(orderDetails);
-
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }
 
         [HttpGet("orders/{id}")]
-        public async Task<IActionResult> GetCustomerOrders(int id) {
-            try { 
+        public async Task<IActionResult> GetCustomerOrders(int id)
+        {
+            try
+            {
                 var customerOrders = await _appRepo.GetCustomerOrders(id);
 
                 if (customerOrders == null)
                     return NotFound();
 
                 return Ok(customerOrders);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return BadRequest(e.Message);
             }
         }

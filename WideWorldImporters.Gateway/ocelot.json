@@ -24,6 +24,18 @@
       "UpstreamPathTemplate": "/items/transac/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/Warehouse/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7051"
+        }
+      ],
+      "UpstreamPathTemplate": "/item",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
     { //Sales
       "DownstreamPathTemplate": "/api/Sales/{id}",
       "DownstreamScheme": "https",
@@ -69,7 +81,7 @@
           "Port": "7099"
         }
       ],
-      "UpstreamPathTemplate": "/customer/order/{id}",//revisar
+      "UpstreamPathTemplate": "/customer/order/{id}", //revisar
       "UpstreamHttpMethod": [ "GET" ]
     },
     {

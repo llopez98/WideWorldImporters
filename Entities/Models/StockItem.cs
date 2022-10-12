@@ -36,14 +36,14 @@ namespace Entities.Models
         public byte[]? Photo { get; set; }
         public string? CustomFields { get; set; }
         public string? Tags { get; set; }
-        public string SearchDetails { get; set; } = null!;
+        public string? SearchDetails { get; set; } = null!;
         public int LastEditedBy { get; set; }
 
         public virtual Color? Color { get; set; }
-        public virtual Person LastEditedByNavigation { get; set; } = null!;
-        public virtual PackageType OuterPackage { get; set; } = null!;
-        public virtual Supplier Supplier { get; set; } = null!;
-        public virtual PackageType UnitPackage { get; set; } = null!;
+        public virtual Person? LastEditedByNavigation { get; set; } = null!;
+        public virtual PackageType? OuterPackage { get; set; } = null!;
+        public virtual Supplier? Supplier { get; set; } = null!;
+        public virtual PackageType? UnitPackage { get; set; } = null!;
         public virtual StockItemHolding? StockItemHolding { get; set; }
         public virtual ICollection<InvoiceLine> InvoiceLines { get; set; }
         public virtual ICollection<OrderLine> OrderLines { get; set; }

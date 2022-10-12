@@ -19,24 +19,25 @@ namespace WideWorldImporters.AuthSvr.Token
             _userManager = userManager;
         }
 
-        public JwtSecurityToken GenerateTokenOption(SigningCredentials signingCredentials, List<Claim> claims)
+        public JwtSecurityToken GenerateTokenOption(
+            SigningCredentials signingCredentials,
+            List<Claim> claims
+        )
         {
             var tokenOptions = new JwtSecurityToken(
-                    issuer: _jwtSettings["validIssuer"],
-                    audience: _jwtSettings["validAudience"],
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(Convert.ToDouble(_jwtSettings["expiryInMinutes"])),
-                    signingCredentials: signingCredentials
-                );
+                issuer: _jwtSettings["validIssuer"],
+                audience: _jwtSettings["validAudience"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_jwtSettings["expiryInMinutes"])),
+                signingCredentials: signingCredentials
+            );
 
             return tokenOptions;
         }
 
         public async Task<List<Claim>> GetClaims(IdentityUser user)
         {
-            var claims = new List<Claim> { 
-                new Claim(ClaimTypes.Name, user.Email)
-            };
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Email) };
 
             var roles = await _userManager.GetRolesAsync(user);
             foreach (var role in roles)
