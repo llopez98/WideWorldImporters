@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WideWorldImporters.Purchasing.Repository;
@@ -69,6 +70,26 @@ namespace WideWorldImporters.Purchasing.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpPost("supplier")]
+        public async Task<IActionResult> NewSupplier(Supplier supplier) {
+            if (supplier == null)
+                return BadRequest();
+
+            await _appRepo.NewSupplier(supplier);
+
+            return Created("", supplier);
+        }
+
+        [HttpPost("purchase/order")]
+        public async Task<IActionResult> NewPurchaseOrder(PurchaseOrder order) {
+            if (order == null)
+                return BadRequest();
+
+            await _appRepo.NewPurchaseOrder(order);
+
+            return Created("", order);
         }
     }
 }

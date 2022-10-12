@@ -30,11 +30,11 @@ namespace Entities.Models
         public DateTime LastEditedWhen { get; set; }
 
         public virtual Order? BackorderOrder { get; set; }
-        public virtual Person ContactPerson { get; set; } = null!;
-        public virtual Customer Customer { get; set; } = null!;
-        public virtual Person LastEditedByNavigation { get; set; } = null!;
+        public virtual Person? ContactPerson { get; set; } = null!;
+        public virtual Customer? Customer { get; set; } = null!;
+        public virtual Person? LastEditedByNavigation { get; set; } = null!;
         public virtual Person? PickedByPerson { get; set; }
-        public virtual Person SalespersonPerson { get; set; } = null!;
+        public virtual Person? SalespersonPerson { get; set; } = null!;
         public virtual ICollection<Order> InverseBackorderOrder { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<OrderLine> OrderLines { get; set; }

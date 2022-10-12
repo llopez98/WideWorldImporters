@@ -108,6 +108,18 @@
       "UpstreamPathTemplate": "/customer",
       "UpstreamHttpMethod": [ "POST" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/Sales/order",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/order",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
     { //Purchasing
       "DownstreamPathTemplate": "/api/Purchasing/suppliers",
       "DownstreamScheme": "https",
@@ -143,6 +155,30 @@
       ],
       "UpstreamPathTemplate": "/purchase/orders/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Purchasing/supplier",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7084"
+        }
+      ],
+      "UpstreamPathTemplate": "/supplier",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Purchasing/purchase/order",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7084"
+        }
+      ],
+      "UpstreamPathTemplate": "/purchase/order",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }

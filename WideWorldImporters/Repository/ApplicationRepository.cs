@@ -97,26 +97,26 @@ namespace WideWorldImporters.Repository
         {
             /*
              {
-             "CustomerName": "CustomerTest1",
-            "BillToCustomerID": 1,
-            "CustomerCategoryID": 3,
-            "PrimaryContactPersonID": 1009,
-            "DeliveryMethodID": 3,
-            "DeliveryCityID": 19586,
-            "PostalCityID": 19586,
-            "AccountOpenedDate": "2022-01-01",
-            "StandardDiscountPercentage": 0,
-            "IsStatementSent": 0,
-            "IsOnCreditHold": 0,
-            "PaymentDays": 7,
-            "PhoneNumber": "(507)555-0101",
-            "FaxNumber": "(507)555-0101",
-            "WebsiteURL": "http://www.test1.com",
-            "DeliveryAddressLine1": "Shop 41",
-            "DeliveryPostalCode": "90410",
-            "PostalAddressLine1": "PO Box 259",
-            "PostalPostalCode": "90216",
-            "LastEditedBy": 1
+                "CustomerName": "CustomerTest1",
+                "BillToCustomerID": 1,
+                "CustomerCategoryID": 3,
+                "PrimaryContactPersonID": 1009,
+                "DeliveryMethodID": 3,
+                "DeliveryCityID": 19586,
+                "PostalCityID": 19586,
+                "AccountOpenedDate": "2022-01-01",
+                "StandardDiscountPercentage": 0,
+                "IsStatementSent": 0,
+                "IsOnCreditHold": 0,
+                "PaymentDays": 7,
+                "PhoneNumber": "(507)555-0101",
+                "FaxNumber": "(507)555-0101",
+                "WebsiteURL": "http://www.test1.com",
+                "DeliveryAddressLine1": "Shop 41",
+                "DeliveryPostalCode": "90410",
+                "PostalAddressLine1": "PO Box 259",
+                "PostalPostalCode": "90216",
+                "LastEditedBy": 1
             }
              */
             try
@@ -126,6 +126,28 @@ namespace WideWorldImporters.Repository
             }
             catch (Exception e)
             {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task NewCustomerOrder(Order order)
+        {
+            /*
+             {
+                "CustomerID": 832,
+	            "SalespersonPersonID": 2,
+	            "ContactPersonID": 3032,
+	            "OrderDate": "2022-01-01",
+	            "ExpectedDeliveryDate": "2022-01-02",
+	            "IsUndersupplyBackordered": 1,
+	            "LastEditedBy": 7
+            }
+             */
+            try
+            { 
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+            }catch (Exception e) { 
                 throw new Exception(e.Message);
             }
         }

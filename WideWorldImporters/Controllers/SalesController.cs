@@ -117,5 +117,15 @@ namespace WideWorldImporters.Controllers
 
             return Created("", customer);
         }
+
+        [HttpPost("order")]
+        public async Task<IActionResult> NewOrder([FromBody] Order order) {
+            if (order == null)
+                return BadRequest();
+
+            await _appRepo.NewCustomerOrder(order);
+
+            return Created("", order);
+        }
     }
 }

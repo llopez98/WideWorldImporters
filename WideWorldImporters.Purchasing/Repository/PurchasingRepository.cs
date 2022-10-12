@@ -80,5 +80,45 @@ namespace WideWorldImporters.Purchasing.Repository
 
             return transactionsDto;
         }
+
+        public async Task NewPurchaseOrder(PurchaseOrder order)
+        {
+            try { 
+                _context.PurchaseOrders.Add(order);
+                await _context.SaveChangesAsync();
+            } catch (Exception e) {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task NewSupplier(Supplier supplier)
+        {
+            /*
+             {
+                "SupplierName": "SupplierTest1",
+                "SupplierCategoryID": 2,
+                "PrimaryContactPersonID": 21,
+                "AlternateContactPersonID": 22,
+                "DeliveryCityID": 7,
+                "PostalCityID": 38171,
+                "PaymentDays": 14,
+                "PhoneNumber": "(507)555-0100",
+                "FaxNumber": "(507)555-0100",
+                "WebsiteURL": "www.suppliertestweb.com",
+                "DeliveryAddressLine1": "Unit 12",
+                "DeliveryPostalCode": "46077",
+                "PostalAddressLine1": "PO Box 1039",
+                "PostalPostalCode": "46077",
+                "LastEditedBy": 1
+                }
+             */
+            try
+            {
+                _context.Suppliers.Add(supplier);
+                await _context.SaveChangesAsync();
+            } catch (Exception e) {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

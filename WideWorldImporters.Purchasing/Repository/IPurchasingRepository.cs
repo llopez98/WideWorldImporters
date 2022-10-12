@@ -1,4 +1,5 @@
 ﻿using Entities.Dto;
+using Entities.Models;
 
 namespace WideWorldImporters.Purchasing.Repository
 {
@@ -9,5 +10,9 @@ namespace WideWorldImporters.Purchasing.Repository
         Task<List<SupplierTransactionsDto>> GetSupplierTransactions(int id);
 
         Task<List<PurchasingOrdersDto>> GetPurchasingOrders(int id);
+
+        Task NewSupplier(Supplier supplier);
+
+        Task NewPurchaseOrder(PurchaseOrder order);
     }
 }

@@ -25,10 +25,10 @@ namespace Entities.Models
         public int LastEditedBy { get; set; }
         public DateTime LastEditedWhen { get; set; }
 
-        public virtual Person ContactPerson { get; set; } = null!;
-        public virtual DeliveryMethod DeliveryMethod { get; set; } = null!;
-        public virtual Person LastEditedByNavigation { get; set; } = null!;
-        public virtual Supplier Supplier { get; set; } = null!;
+        public virtual Person? ContactPerson { get; set; } = null!;
+        public virtual DeliveryMethod? DeliveryMethod { get; set; } = null!;
+        public virtual Person? LastEditedByNavigation { get; set; } = null!;
+        public virtual Supplier? Supplier { get; set; } = null!;
         public virtual ICollection<PurchaseOrderLine> PurchaseOrderLines { get; set; }
         public virtual ICollection<StockItemTransaction> StockItemTransactions { get; set; }
         public virtual ICollection<SupplierTransaction> SupplierTransactions { get; set; }

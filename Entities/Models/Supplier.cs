@@ -40,13 +40,13 @@ namespace Entities.Models
         public string PostalPostalCode { get; set; } = null!;
         public int LastEditedBy { get; set; }
 
-        public virtual Person AlternateContactPerson { get; set; } = null!;
-        public virtual City DeliveryCity { get; set; } = null!;
+        public virtual Person? AlternateContactPerson { get; set; } = null!;
+        public virtual City? DeliveryCity { get; set; } = null!;
         public virtual DeliveryMethod? DeliveryMethod { get; set; }
-        public virtual Person LastEditedByNavigation { get; set; } = null!;
-        public virtual City PostalCity { get; set; } = null!;
-        public virtual Person PrimaryContactPerson { get; set; } = null!;
-        public virtual SupplierCategory SupplierCategory { get; set; } = null!;
+        public virtual Person? LastEditedByNavigation { get; set; } = null!;
+        public virtual City? PostalCity { get; set; } = null!;
+        public virtual Person? PrimaryContactPerson { get; set; } = null!;
+        public virtual SupplierCategory? SupplierCategory { get; set; } = null!;
         public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual ICollection<StockItemTransaction> StockItemTransactions { get; set; }
         public virtual ICollection<StockItem> StockItems { get; set; }
