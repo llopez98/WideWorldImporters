@@ -46,14 +46,14 @@ namespace Entities.Models
         public int LastEditedBy { get; set; }
 
         public virtual Person? AlternateContactPerson { get; set; }
-        public virtual Customer BillToCustomer { get; set; } = null!;
+        public virtual Customer? BillToCustomer { get; set; } = null!;
         public virtual BuyingGroup? BuyingGroup { get; set; }
-        public virtual CustomerCategory CustomerCategory { get; set; } = null!;
-        public virtual City DeliveryCity { get; set; } = null!;
-        public virtual DeliveryMethod DeliveryMethod { get; set; } = null!;
-        public virtual Person LastEditedByNavigation { get; set; } = null!;
-        public virtual City PostalCity { get; set; } = null!;
-        public virtual Person PrimaryContactPerson { get; set; } = null!;
+        public virtual CustomerCategory? CustomerCategory { get; set; } = null!;
+        public virtual City? DeliveryCity { get; set; } = null!;
+        public virtual DeliveryMethod? DeliveryMethod { get; set; } = null!;
+        public virtual Person? LastEditedByNavigation { get; set; } = null!;
+        public virtual City? PostalCity { get; set; } = null!;
+        public virtual Person? PrimaryContactPerson { get; set; } = null!;
         public virtual ICollection<CustomerTransaction> CustomerTransactions { get; set; }
         public virtual ICollection<Customer> InverseBillToCustomer { get; set; }
         public virtual ICollection<Invoice> InvoiceBillToCustomers { get; set; }

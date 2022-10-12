@@ -14,5 +14,7 @@ namespace WideWorldImporters.Repository
         Task<List<CustomerOrdersDto>> GetCustomerOrders(int id);
 
         Task<OrderDetailsDto> GetOrderDetails(int id);
+
+        Task NewCustomer(Customer customer);
     }
 }

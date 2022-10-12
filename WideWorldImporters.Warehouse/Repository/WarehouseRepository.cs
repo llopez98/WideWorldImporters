@@ -69,8 +69,19 @@ namespace WideWorldImporters.Warehouse.Repository
             try
             {
                 /*
-                 INSERT INTO Warehouse.StockItems (StockItemName, SupplierID, UnitPackageID, OuterPackageID, LeadTimeDays, QuantityPerOuter, IsChillerStock, TaxRate, UnitPrice, TypicalWeightPerUnit, LastEditedBy)
-                 VALUES ('TestItem1', 12, 7, 7, 15, 1, 0, 15, 100, 15, 1);
+                 {
+                    "StockItemName": "TestItem2",
+                    "SupplierID": 12,
+                    "UnitPackageID": 7,
+                    "OuterPackageID": 7,
+                    "LeadTimeDays": 15,
+                    "QuantityPerOuter": 1,
+                    "IsChillerStock": 0,
+                    "TaxRate": 15,
+                    "UnitPrice": 100,
+                    "TypicalWeightPerUnit": 15,
+                    "LastEditedBy": 1
+                }
                  */
                 _context.StockItems.Add(item);
 

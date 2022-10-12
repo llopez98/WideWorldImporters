@@ -81,7 +81,7 @@
           "Port": "7099"
         }
       ],
-      "UpstreamPathTemplate": "/customer/order/{id}", //revisar
+      "UpstreamPathTemplate": "/customer/order/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -95,6 +95,18 @@
       ],
       "UpstreamPathTemplate": "/customer/orders/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Sales/customer",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7099"
+        }
+      ],
+      "UpstreamPathTemplate": "/customer",
+      "UpstreamHttpMethod": [ "POST" ]
     },
     { //Purchasing
       "DownstreamPathTemplate": "/api/Purchasing/suppliers",

@@ -92,5 +92,42 @@ namespace WideWorldImporters.Repository
 
             return orderDetailsDto;
         }
+
+        public async Task NewCustomer(Customer customer)
+        {
+            /*
+             {
+             "CustomerName": "CustomerTest1",
+            "BillToCustomerID": 1,
+            "CustomerCategoryID": 3,
+            "PrimaryContactPersonID": 1009,
+            "DeliveryMethodID": 3,
+            "DeliveryCityID": 19586,
+            "PostalCityID": 19586,
+            "AccountOpenedDate": "2022-01-01",
+            "StandardDiscountPercentage": 0,
+            "IsStatementSent": 0,
+            "IsOnCreditHold": 0,
+            "PaymentDays": 7,
+            "PhoneNumber": "(507)555-0101",
+            "FaxNumber": "(507)555-0101",
+            "WebsiteURL": "http://www.test1.com",
+            "DeliveryAddressLine1": "Shop 41",
+            "DeliveryPostalCode": "90410",
+            "PostalAddressLine1": "PO Box 259",
+            "PostalPostalCode": "90216",
+            "LastEditedBy": 1
+            }
+             */
+            try
+            {
+                _context.Customers.Add(customer);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

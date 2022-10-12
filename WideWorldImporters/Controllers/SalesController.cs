@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WideWorldImporters.Repository;
@@ -105,6 +106,16 @@ namespace WideWorldImporters.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpPost("customer")]
+        public async Task<IActionResult> NewCustomer([FromBody] Customer customer) {
+            if (customer == null)
+                return BadRequest();
+
+            await _appRepo.NewCustomer(customer);
+
+            return Created("", customer);
         }
     }
 }
