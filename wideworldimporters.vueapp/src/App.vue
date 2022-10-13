@@ -22,6 +22,13 @@
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
+
+          <v-list-item :href="stockItems">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Items</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -40,7 +47,8 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
-    href: "#/about"
+    href: "#/login",
+    stockItems: "#/items"
   }),
 };
 </script>

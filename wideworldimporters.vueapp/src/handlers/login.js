@@ -1,9 +1,7 @@
 import axios from "axios";
-import LocalStorageService from "@/helpers/LocalStorageService";
+import { store } from "@/helpers/store";
 
-const localStorageService = LocalStorageService.getService();
-
-export function SendLoginData (data){
+/*export function SendLoginData (data){
   axios
     .post("https://localhost:7252/api/auth/login", data, {
       headers: {
@@ -12,10 +10,32 @@ export function SendLoginData (data){
       },
     })
     .then(function (response) {
-      localStorageService.setToken(response.data);
-      //console.log(response.data);
+      //localStorageService.setToken(response.data);
+      store.token = response.data;
+      return true;
+      //console.log(store.token);
     })
     .catch(function (error) {
       console.log(error);
     });
-}
+}*/
+
+export const SendLoginData = (data) => {
+  return new Promise(async (resolve) => {
+    return axios
+      .post("https://localhost:7252/api/auth/login", data, {
+        headers: {
+          //'Authorization': 'Bearer' + 'Your Bearer Pssword',
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.data);
+        store.token = response.data;
+        resolve(response);
+      })
+      .catch(({ response }) => {
+        resolve(response);
+      });
+  });
+};

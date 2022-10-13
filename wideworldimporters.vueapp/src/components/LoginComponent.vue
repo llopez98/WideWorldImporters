@@ -27,7 +27,13 @@ export default {
     }),
     methods: {
         submit() {
-            loginHandler.SendLoginData(this.login);
+            loginHandler.SendLoginData(this.login).then(
+                (resp) => {
+                    if (resp.status == 200) {
+                        window.location.href = "/";
+                    }
+                }
+            ).catch((error) => console.log(error));
         }
     }
 }

@@ -194,13 +194,13 @@
     },
     {
       "DownstreamPathTemplate": "/api/auth/Registration",
-      "DownstreamScheme": "https"
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": "7252"
         }
-      ]
+      ],
       "UpstreamPathTemplate": "/registration",
       "UpstreamHttpMethod": ["POST"]
     }
