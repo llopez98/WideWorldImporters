@@ -23,12 +23,21 @@
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
 
-          <v-list-item :href="stockItems">
+          <v-list-item :href="register">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Items</v-list-item-title>
+            <v-list-item-title>Register</v-list-item-title>
           </v-list-item>
+
+          <div v-if="loged">
+            <v-list-item :href="stockItems">
+              <v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Items</v-list-item-title>
+            </v-list-item>
+          </div>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -48,7 +57,19 @@ export default {
     drawer: false,
     group: null,
     href: "#/login",
-    stockItems: "#/items"
+    register: "#/register",
+    stockItems: "#/items",
+    loged: false
   }),
+  methods:{
+    isLoged(){
+      let token = localStorage.getItem('token');
+      if(token)
+        this.loged = true;
+    }
+  },
+  mounted(){
+    this.isLoged();
+  }
 };
 </script>

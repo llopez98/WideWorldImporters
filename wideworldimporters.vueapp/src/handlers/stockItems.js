@@ -1,5 +1,4 @@
 import axios from "axios";
-import { store } from "@/helpers/store";
 
 export const GetStockItems = () => {
   return new Promise(async (resolve) => {

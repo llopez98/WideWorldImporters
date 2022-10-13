@@ -1,5 +1,4 @@
 import axios from "axios";
-import { store } from "@/helpers/store";
 
 /*export function SendLoginData (data){
   axios
@@ -23,15 +22,30 @@ import { store } from "@/helpers/store";
 export const SendLoginData = (data) => {
   return new Promise(async (resolve) => {
     return axios
-      .post("https://localhost:7252/api/auth/login", data, {
+      .post("https://localhost:7207/login", data, {
         headers: {
-          //'Authorization': 'Bearer' + 'Your Bearer Pssword',
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        localStorage.setItem('token', response.data);
-        store.token = response.data;
+        localStorage.setItem("token", response.data);
+        resolve(response);
+      })
+      .catch(({ response }) => {
+        resolve(response);
+      });
+  });
+};
+
+export const RegisterUser = (data) => {
+  return new Promise(async (resolve) => {
+    return axios
+      .post("https://localhost:7207/registration", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
         resolve(response);
       })
       .catch(({ response }) => {
