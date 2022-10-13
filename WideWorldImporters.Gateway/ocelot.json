@@ -179,6 +179,30 @@
       ],
       "UpstreamPathTemplate": "/purchase/order",
       "UpstreamHttpMethod": [ "POST" ]
+    }, //AuthServer
+    {
+      "DownstreamPathTemplate": "/api/auth/Login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7252"
+        }
+      ],
+      "UpstreamPathTemplate": "/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/Registration",
+      "DownstreamScheme": "https"
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7252"
+        }
+      ]
+      "UpstreamPathTemplate": "/registration",
+      "UpstreamHttpMethod": ["POST"]
     }
   ]
 }

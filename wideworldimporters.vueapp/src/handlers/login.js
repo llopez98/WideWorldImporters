@@ -1,4 +1,7 @@
 import axios from "axios";
+import LocalStorageService from "@/helpers/LocalStorageService";
+
+const localStorageService = LocalStorageService.getService();
 
 export function SendLoginData (data){
   axios
@@ -9,7 +12,8 @@ export function SendLoginData (data){
       },
     })
     .then(function (response) {
-      console.log(response);
+      localStorageService.setToken(response.data);
+      //console.log(response.data);
     })
     .catch(function (error) {
       console.log(error);
