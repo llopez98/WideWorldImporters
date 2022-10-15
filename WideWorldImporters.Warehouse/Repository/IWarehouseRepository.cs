@@ -10,5 +10,7 @@ namespace WideWorldImporters.Warehouse.Repository
         Task<List<StockItemTransactionDto>> GetStockItemTransactions(int id);
 
         Task NewStockItem(StockItem item);
+
+        Task DeleteStockItem(int id);
     }
 }

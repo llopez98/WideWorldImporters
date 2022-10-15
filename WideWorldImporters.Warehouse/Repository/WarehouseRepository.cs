@@ -92,5 +92,16 @@ namespace WideWorldImporters.Warehouse.Repository
                 throw new Exception(e.Message);
             }
         }
+
+        public async Task DeleteStockItem(int id)
+        {
+            try {
+                var stockItem = _context.StockItems.FindAsync(id);
+                _context.Remove(stockItem);
+                await _context.SaveChangesAsync();
+            } catch (Exception e) { 
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

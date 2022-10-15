@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="deep-purple" dark>
+    <v-app-bar color="indigo lighten" dark max-height="100">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
       <v-toolbar-title>World Wide Importers</v-toolbar-title>

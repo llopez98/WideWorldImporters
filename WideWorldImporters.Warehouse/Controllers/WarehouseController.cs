@@ -64,5 +64,18 @@ namespace WideWorldImporters.Warehouse.Controllers
 
             return Created("", item);
         }
+
+        [HttpDelete("item/{id}")]
+        public async Task<IActionResult> DeleteStockItem(int id) {
+            try
+            {
+                await _appRepo.DeleteStockItem(id);
+                return Ok();
+            }
+            catch (Exception e) { 
+                return StatusCode(500);
+            }
+
+        }
     }
 }
