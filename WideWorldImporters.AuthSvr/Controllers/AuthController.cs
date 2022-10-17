@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using WideWorldImporters.AuthSvr.Application.Dto;
+using WideWorldImporters.AuthSvr.Models;
 using WideWorldImporters.AuthSvr.Token;
 
 namespace WideWorldImporters.AuthSvr.Controllers
@@ -11,10 +12,10 @@ namespace WideWorldImporters.AuthSvr.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly ITokenService _tokenService;
 
-        public AuthController(UserManager<IdentityUser> userManager, ITokenService tokenService)
+        public AuthController(UserManager<User> userManager, ITokenService tokenService)
         {
             _userManager = userManager;
             _tokenService = tokenService;
@@ -26,7 +27,7 @@ namespace WideWorldImporters.AuthSvr.Controllers
             if (userDto == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new IdentityUser { UserName = userDto.Email, Email = userDto.Email };
+            var user = new User { UserName = userDto.Email, Email = userDto.Email };
 
             var result = await _userManager.CreateAsync(user, userDto.Password);
 
@@ -48,7 +49,7 @@ namespace WideWorldImporters.AuthSvr.Controllers
             var user = await _userManager.FindByNameAsync(userDto.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, userDto.Password))
             {
-                return Unauthorized();
+                return Unauthorized(new AuthResponseDto { IsAuthSuccessful = false ,ErrorMessage = "Invalid Authentication" });
             }
 
             var signingCredentials = _tokenService.GetSigningCredentials();
@@ -56,7 +57,12 @@ namespace WideWorldImporters.AuthSvr.Controllers
             var tokenOptions = _tokenService.GenerateTokenOption(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
-            return Ok(token);
+            user.RefreshToken = _tokenService.GenerateRefreshToken();
+            user.RefreshTokenExpriryTime = DateTime.Now.AddHours(1);
+
+            await _userManager.UpdateAsync(user);
+
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token, RefreshToken = user.RefreshToken });
         }
     }
 }

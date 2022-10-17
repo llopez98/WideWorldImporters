@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WideWorldImporters.AuthSvr.Context;
+using WideWorldImporters.AuthSvr.Models;
 using WideWorldImporters.AuthSvr.Token;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,7 @@ builder.Services.AddDbContext<AuthContext>(
     opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("AzureDb"))
 );
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthContext>();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AuthContext>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 
