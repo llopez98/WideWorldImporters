@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as itemHelper from '../handlers/stockItems'
+import * as itemService from '../services/stockItems'
 export default {
     data() {
         return {
@@ -24,7 +24,7 @@ export default {
     },
     methods: {
        GetStockItems(){
-            itemHelper.GetStockItems().then(
+            itemService.GetStockItems().then(
                 (resp)=>{
                     console.log(resp);
                     this.stockItems = resp;

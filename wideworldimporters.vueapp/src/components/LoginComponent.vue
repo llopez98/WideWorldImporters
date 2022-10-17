@@ -1,8 +1,8 @@
 <template>
     <v-container grid-list-xs>
         <form>
-            <v-text-field v-model="login.email" label="E-mail" required :rules="rules.email"></v-text-field>
-            <v-text-field v-model="login.password" label="Password" type="password" required :rules="rules.password">
+            <v-text-field v-model="userAuthentication.email" label="E-mail" required :rules="rules.email"></v-text-field>
+            <v-text-field v-model="userAuthentication.password" label="Password" type="password" required :rules="rules.password">
             </v-text-field>
             <v-btn class="mr-4" @click="submit">
                 submit
@@ -22,7 +22,8 @@
 </template>
 
 <script>
-import * as loginHandler from '../handlers/login'
+import * as loginService from '../services/auth'
+import * as intercepService from '../services/interceptor'
 
 export default {
     name: 'LoginComponent',
@@ -32,7 +33,7 @@ export default {
         alert: false,
         danger: false,
         danger2: false,
-        login: {
+        userAuthentication: {
             email: "",
             password: ""
         },
@@ -43,18 +44,19 @@ export default {
     }),
     methods: {
         submit(e) {
-            if (this.login.email == '' || this.login.password == '') {
+            if (this.userAuthentication.email == '' || this.userAuthentication.password == '') {
                 this.danger2 = true;
             } else {
-                loginHandler.SendLoginData(this.login).then(
+                loginService.SendLoginData(this.userAuthentication).then(
                     (resp) => {
                         this.danger == false;
                         this.danger2 == false;
-                        if (resp.status == 200) {
+                        if (resp) {
                             this.alert == true;
+                            //intercepService.CheckExpTime();
                             setTimeout(() => {
                                 window.location.href = "/";
-                            }, 5000);   
+                            }, 5000);
                         }else{
                             this.danger = true;
                         }

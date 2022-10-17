@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import * as loginHandler from '../handlers/login'
+import * as registerService from '../services/auth'
 
 export default {
     name: 'Register',
@@ -49,7 +49,7 @@ export default {
             if (this.registration.email == '' || this.registration.password == '' || this.registration.confirmPassword == '') {
                 this.danger2 = true;
             } else {
-                loginHandler.RegisterUser(this.registration).then(
+                registerService.RegisterUser(this.registration).then(
                     (resp) => {
                         if (resp.status == 201) {
                             this.danger = false;

@@ -202,7 +202,19 @@
         }
       ],
       "UpstreamPathTemplate": "/registration",
-      "UpstreamHttpMethod": ["POST"]
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/token/refresh",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7252"
+        }
+      ],
+      "UpstreamPathTemplate": "/refresh",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }

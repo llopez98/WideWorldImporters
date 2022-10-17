@@ -42,7 +42,7 @@ namespace WideWorldImporters.AuthSvr.Controllers
 
             await _userManager.UpdateAsync(user);
 
-            return Ok(new AuthResponseDto { Token = token, RefreshToken = user.RefreshToken, IsAuthSuccessful = true});
+            return Ok(new AuthResponseDto { Token = token, RefreshToken = user.RefreshToken, IsAuthSuccessful = true, ExpTime = user.RefreshTokenExpriryTime});
         }
     }
 }

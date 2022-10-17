@@ -18,14 +18,14 @@
 
           <v-list-item :href="href">
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>mdi-login</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
 
           <v-list-item :href="register">
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon>mdi-login</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Register</v-list-item-title>
           </v-list-item>
@@ -63,8 +63,7 @@ export default {
   }),
   methods:{
     isLoged(){
-      let token = localStorage.getItem('token');
-      if(token)
+      if(localStorage.getItem('token') && localStorage.getItem('refreshToken'))
         this.loged = true;
     }
   },
