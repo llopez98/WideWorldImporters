@@ -23,7 +23,7 @@
 
 <script>
 import * as loginService from '../services/auth'
-import * as intercepService from '../services/interceptor'
+//import * as intercepService from '../services/interceptor'
 
 export default {
     name: 'LoginComponent',

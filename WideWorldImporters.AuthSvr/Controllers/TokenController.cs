@@ -42,7 +42,9 @@ namespace WideWorldImporters.AuthSvr.Controllers
 
             await _userManager.UpdateAsync(user);
 
-            return Ok(new AuthResponseDto { Token = token, RefreshToken = user.RefreshToken, IsAuthSuccessful = true, ExpTime = user.RefreshTokenExpriryTime});
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return Ok(new AuthResponseDto { Token = token, RefreshToken = user.RefreshToken, IsAuthSuccessful = true, ExpTime = user.RefreshTokenExpriryTime, Id = user.Id, Roles = roles});
         }
     }
 }

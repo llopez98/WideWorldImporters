@@ -7,5 +7,7 @@
         public string Token { get; set; }
         public string RefreshToken { get; set; }
         public DateTime ExpTime { get; set; }
+        public string Id { get; set; }
+        public IList<string> Roles { get; set; }
     }
 }

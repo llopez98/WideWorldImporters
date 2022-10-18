@@ -38,7 +38,7 @@ namespace WideWorldImporters.AuthSvr.Controllers
                 return BadRequest(errors);
             }
 
-            await _userManager.AddToRoleAsync(user, "common");
+            await _userManager.AddToRoleAsync(user, "warehouse");
 
             return StatusCode(201);
         }
@@ -62,7 +62,9 @@ namespace WideWorldImporters.AuthSvr.Controllers
 
             await _userManager.UpdateAsync(user);
 
-            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token, RefreshToken = user.RefreshToken, ExpTime = user.RefreshTokenExpriryTime });
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token, RefreshToken = user.RefreshToken, ExpTime = user.RefreshTokenExpriryTime, Id = user.Id, Roles = roles });
         }
     }
 }
