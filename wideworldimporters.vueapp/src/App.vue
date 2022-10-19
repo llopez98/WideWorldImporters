@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import eventBus from './common/eventBus';
 
 export default {
   name: 'App',
@@ -51,5 +52,24 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    currentUser(){
+      return this.$store.state.auth.user;
+    },
+  },
+  methods:{
+    logOut(){
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+  },
+  mounted(){
+    eventBus.on("logout", () =>{
+      this.logOut();
+    });
+  },
+  beforeDestroy(){
+    eventBus.remove("logout");
+  }
 };
 </script>
